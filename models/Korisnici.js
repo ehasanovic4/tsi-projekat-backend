@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const KorisnikSchema = new mongoose.Schema({
-  name: {
+  ime: {
     type: String,
     required: true,
   },
@@ -15,10 +15,6 @@ const KorisnikSchema = new mongoose.Schema({
   },
   napomene: {
     type: String,
-    required: true,
-  },
-  vrijeme: {
-    type: Date,
     required: true,
   }
 });
