@@ -15,6 +15,14 @@ const KorisnikSchema = new mongoose.Schema({
   },
   napomene: {
     type: String,
+    required: false,
+  },
+  dan: {
+    type: String,
+    required: true,
+  },
+  vrijeme: {
+    type: String,
     required: true,
   }
 });
