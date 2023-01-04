@@ -7,11 +7,11 @@ const KorisnikSchema = new mongoose.Schema({
   },
   prezime: {
     type: String,
-    required: true,
+    required: false,
   },
   email: {
     type: String,
-    required: true,
+    required: false,
   },
   napomene: {
     type: String,
@@ -24,6 +24,10 @@ const KorisnikSchema = new mongoose.Schema({
   vrijeme: {
     type: String,
     required: true,
+  },
+  usluga: {
+    type: String,
+    required: false,
   }
 });
 
