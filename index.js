@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const KorisnikModel = require("./models/Korisnici");
+const validator = require("validator");
 
 const cors = require('cors')
 
@@ -22,10 +23,22 @@ app.get("/getKorisnici", (req, res) => {
 
  app.post("/createKorisnik", async (req, res) => {
   const korisnik = req.body
+  
+  
   const noviKorisnik = new KorisnikModel(korisnik);
-  await noviKorisnik.save();
 
+  //KorisnikSchema.statics.rezervisi();
+  if(!noviKorisnik.ime || !noviKorisnik.prezime || !noviKorisnik.email){
+    res.json("Polja za ime, prezime i email moraju biti popunjena");
+  }
+  else if(!validator.isEmail(noviKorisnik.email)){
+    res.json("Email nije validan")
+  }
+
+  else{
+  await noviKorisnik.save();
   res.json(korisnik);
+  }
  })
 
 

@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const KorisnikSchema = new mongoose.Schema({
   ime: {
     type: String,
-    required: true,
+    required: false,
   },
   prezime: {
     type: String,
@@ -19,17 +20,29 @@ const KorisnikSchema = new mongoose.Schema({
   },
   dan: {
     type: String,
-    required: true,
+    required: false,
   },
   vrijeme: {
     type: String,
-    required: true,
+    required: false,
   },
   usluga: {
     type: String,
     required: false,
   }
 });
+
+KorisnikSchema.statics.rezervisi = async function(ime, prezime, email) {
+  //validacija
+
+  if(!ime || !prezime || !email){
+    throw Error('Polja za ime, prezime i email moraju biti popunjena')
+  }
+
+  if(!validator.isEmail(email)){
+    throw Error("Email nije validan")
+  }
+}
 
 const KorisnikModel = mongoose.model("users", KorisnikSchema);
 module.exports = KorisnikModel;
