@@ -26,10 +26,16 @@ app.get("/getKorisnici", (req, res) => {
   
   
   const noviKorisnik = new KorisnikModel(korisnik);
-
+  //var letters = /^[A-Za-z]+$/;
   //KorisnikSchema.statics.rezervisi();
   if(!noviKorisnik.ime || !noviKorisnik.prezime || !noviKorisnik.email){
     res.json("Polja za ime, prezime i email moraju biti popunjena");
+  }
+  else if(!validator.isAlpha(noviKorisnik.ime)){
+    res.json("Unesite ispravno ime");
+  }
+  else if(!validator.isAlpha(noviKorisnik.ime)){
+    res.json("Unesite ispravno prezime");
   }
   else if(!validator.isEmail(noviKorisnik.email)){
     res.json("Email nije validan")
